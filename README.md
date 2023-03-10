@@ -38,3 +38,4 @@ $ yarn start
   - [ ] Politicas de privacidade
 - [ ] Criar estrutura de Services
 - [ ] Testar o conceito de state-cross-window, ver projeto React, mas para que?
+- [ ] avaliar pacote de animação de transição solid-custom-navigation
