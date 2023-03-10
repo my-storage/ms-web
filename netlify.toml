@@ -1,0 +1,10 @@
+[build]
+  publish = "netlify/"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/index"
+  status = 200
