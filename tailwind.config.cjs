@@ -6,7 +6,21 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      colors: { 
+        primary: "#FFFFFF",
+        secondary: "#2782E9",
+        tertiary: "#313131",
+        help: {
+          gray: "#A9A9CA",
+          lightGray: "#EBEBFC",
+          blue: "#408EF4",
+          purple: "#7062FA",
+          mint: "#5AB4AA",
+          amber: "#E25531",
+        }
+      },
+    },
   },
   plugins: [],
 };

@@ -20,7 +20,7 @@ export const Login: Component = () => {
       <div class="mt-5" />
       <Input label="Senha" name="password" type="password" />
       <div class="mt-2" />
-      <CheckBox label="Lembre-se de meu email" />
+      <CheckBox label="Lembre-se de meu email" id="remember" />
       <div class="mt-10" />
       <Button>Entrar</Button>
 

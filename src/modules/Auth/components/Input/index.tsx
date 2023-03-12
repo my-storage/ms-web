@@ -12,7 +12,7 @@ export const Input: ParentComponent<InputProps> = (props) => {
       </label>
       <input
         {...props}
-        class="w-full h-8 border-violet-100 focus:border-blue-400 border-b outline-none text-sm transition-colors"
+        class="w-full h-11 border-blue-100 focus:border-blue-400 border-b outline-none text-sm transition-colors"
       />
     </div>
   );
