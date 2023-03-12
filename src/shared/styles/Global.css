@@ -9,6 +9,10 @@
   font-family: 'Manrope', serif;
 }
 
+html, body {
+  height: 100svh;
+}
+
 body {
   -webkit-font-smoothing: antialiased !important;
 }
