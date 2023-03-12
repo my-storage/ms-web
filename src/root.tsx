@@ -20,7 +20,8 @@ export default function Root() {
       <Head>
         <Meta charset="utf-8" />
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Link href="/fonts/fonts.css" rel="stylesheet" />
+        <Link rel="icon" type="image/x-icon" href="/logo.svg" />
+        <Link rel="stylesheet" href="/fonts/fonts.css" />
       </Head>
       <Body>
         <ErrorBoundary>
