@@ -1,5 +1,10 @@
 import { SignUp } from '@modules/Auth/pages/SignUp';
+import { AuthLayout } from '@layouts/AuthLayout';
 
 export default function Page() {
-  return <SignUp />;
+  return (
+    <AuthLayout>
+      <SignUp />
+    </AuthLayout>
+  );
 }
