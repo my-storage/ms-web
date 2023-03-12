@@ -1,4 +1,4 @@
-import { Login } from '@modules/Auth/pages/login';
+import { Login } from '@modules/Auth/pages/Login';
 
 export default function Page() {
   return <Login />;
