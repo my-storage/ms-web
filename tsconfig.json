@@ -22,6 +22,9 @@
       "@contexts/*": [
         "src/contexts/*"
       ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
       "@features/*": [
         "src/features/*"
       ],
