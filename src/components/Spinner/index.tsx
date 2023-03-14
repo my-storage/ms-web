@@ -22,8 +22,8 @@ export const Spinner: ParentComponent<SpinnerProps> = (_props) => {
           'h-6': props.size === 'small',
           'w-12': props.size === 'medium',
           'h-12': props.size === 'medium',
-          'w-18': props.size === 'large',
-          'h-18': props.size === 'large',
+          'w-20': props.size === 'large',
+          'h-20': props.size === 'large',
         }}
         style={{
           'border-width': '3px',

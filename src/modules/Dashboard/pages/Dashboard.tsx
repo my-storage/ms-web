@@ -1,32 +1,120 @@
-import { For } from 'solid-js';
+import { For, Match, Switch } from 'solid-js';
 
-import { HiOutlineSearch, HiOutlineBell, HiSolidDocumentDuplicate } from 'solid-icons/hi';
+import {
+  HiOutlineSearch,
+  HiOutlineBell,
+  HiSolidDocumentDuplicate,
+  HiOutlineChevronRight,
+  HiOutlineViewGrid,
+} from 'solid-icons/hi';
 import { BiRegularImages } from 'solid-icons/bi';
 import { BiSolidVideos } from 'solid-icons/bi';
 import { FaSolidChartPie } from 'solid-icons/fa';
+import { AiOutlineUnorderedList } from 'solid-icons/ai';
+import { FaSolidFolder } from 'solid-icons/fa';
 
-import { FileCard } from '@modules/Dashboard/components/FileCard';
+import { Spinner } from '@components/Spinner';
 
-export interface File {
+export interface Item {
   name: string;
-  mime: string;
-  author: string;
+  mime?: string;
   createdAt: Date;
   updatedAt?: Date;
 }
 
-const files: File[] = [
+const files: Item[] = [
   {
-    name: 'Documento PDF.pdf',
-    mime: 'pdf',
-    author: 'Dhaniel',
+    name: 'O Show de Truman.mkv',
+    mime: 'mkv',
     createdAt: new Date(),
   },
   {
-    name: 'Imagem de carro.png',
-    mime: 'png',
-    author: 'Felipe',
+    name: 'legendas',
     createdAt: new Date('2023-01-01'),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Entrevista com o vampiro.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Um Dia de Fúria.avi',
+    mime: 'avi',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  },
+  {
+    name: 'Advogado do Diabo.mp4',
+    mime: 'mp4',
+    createdAt: new Date(),
     updatedAt: new Date(),
   },
 ];
@@ -38,14 +126,7 @@ export function Dashboard() {
       <FiletypeMenu />
 
       <main class="spy-3">
-        <For each={files} fallback={<div>Loading...</div>}>
-          {(file) => (
-            <>
-              <FileCard file={file} />
-              <div class="mb-3" />
-            </>
-          )}
-        </For>
+        <FileList />
       </main>
     </>
   );
@@ -140,5 +221,66 @@ function Header() {
         </button>
       </div>
     </header>
+  );
+}
+
+function FileList() {
+  return (
+    <main class="flex flex-col justify-center w-full h-full">
+      <header class="flex items-center justify-center mb-2">
+        <ul class="flex items-center justify-center">
+          <li class="text-xs text-slate-400 mr-2">Meus Arquivos</li>
+          <HiOutlineChevronRight size={14} />
+          <li class="text-xs text-slate-400 mx-1">Files</li>
+          <HiOutlineChevronRight size={14} />
+          <li class="text-xs text-slate-400 ml-1">Anos 90</li>
+        </ul>
+        <button
+          type="button"
+          class="border rounded-md w-8 h-8 flex items-center justify-center ml-auto"
+        >
+          <AiOutlineUnorderedList color="#4f46e5" />
+        </button>
+        <button
+          type="button"
+          class="border rounded-md w-8 h-8 flex items-center justify-center ml-2"
+        >
+          <HiOutlineViewGrid color="#4f46e5" />
+        </button>
+      </header>
+      <For
+        each={files}
+        fallback={
+          <div class="flex items-center justify-center mt-8">
+            <Spinner color="#4f46e5" size="medium" />
+          </div>
+        }
+      >
+        {(file) => (
+          <button
+            type="button"
+            class="p-2 mt-1 flex items-center justify-start rounded-md transition-colors focus:bg-slate-100"
+          >
+            <div class="mr-2">
+              <Switch>
+                <Match when={file.mime}>
+                  <BiSolidVideos color="#474140" />
+                </Match>
+                <Match when={!file.mime}>
+                  <FaSolidFolder color="#474140" />
+                </Match>
+              </Switch>
+            </div>
+            <span
+              class="text-md text-slate-500 font-medium mr-auto"
+              classList={{ 'text-slate-800': !file.mime }}
+            >
+              {file.name}
+            </span>
+            <HiOutlineChevronRight size={14} />
+          </button>
+        )}
+      </For>
+    </main>
   );
 }

@@ -32,6 +32,7 @@ export default function Root() {
           </Suspense>
         </ErrorBoundary>
         <Scripts />
+        <div id="portal" />
       </Body>
     </Html>
   );
