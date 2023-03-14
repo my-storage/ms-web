@@ -1,14 +1,11 @@
-import { For, createSignal } from 'solid-js';
-import { HiOutlineMenu } from 'solid-icons/hi';
+import { For } from 'solid-js';
 
-import { Input } from '@components/Input';
-import { Avatar } from '@components/Avatar';
+import { HiOutlineSearch, HiOutlineBell, HiSolidDocumentDuplicate } from 'solid-icons/hi';
+import { BiRegularImages } from 'solid-icons/bi';
+import { BiSolidVideos } from 'solid-icons/bi';
+import { FaSolidChartPie } from 'solid-icons/fa';
+
 import { FileCard } from '@modules/Dashboard/components/FileCard';
-
-enum Tabs {
-  FILES = 'files',
-  FOLDERS = 'folders',
-}
 
 export interface File {
   name: string;
@@ -35,82 +32,12 @@ const files: File[] = [
 ];
 
 export function Dashboard() {
-  const [currentTab, setCurrentTab] = createSignal<Tabs>(Tabs.FILES);
-
   return (
-    <section>
-      <header class=" px-4 pt-3">
-        <Input
-          type="text"
-          name="search"
-          isCleanable={true}
-          leftElement={<HiOutlineMenu size={22} />}
-          rightElement={<Avatar userName="D" />}
-        />
+    <>
+      <Header />
+      <FiletypeMenu />
 
-        <ul class="flex border-b border-gray-100">
-          <li class="flex-1">
-            <button class="relative block p-4 w-full" onClick={() => setCurrentTab(Tabs.FILES)}>
-              <span
-                class="absolute inset-x-0 -bottom-px h-px w-full"
-                classList={{
-                  'bg-help-purple ': currentTab() === Tabs.FILES,
-                }}
-              />
-
-              <div class="flex items-center justify-center gap-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 flex-shrink-0 text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                  />
-                </svg>
-
-                <span class="text-sm font-medium text-gray-900"> Settings </span>
-              </div>
-            </button>
-          </li>
-
-          <li class="flex-1">
-            <button class="relative block p-4 w-full" onClick={() => setCurrentTab(Tabs.FOLDERS)}>
-              <span
-                class="absolute inset-x-0 -bottom-px h-px w-full"
-                classList={{
-                  'bg-help-purple ': currentTab() === Tabs.FOLDERS,
-                }}
-              />
-
-              <div class="flex items-center justify-center gap-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 flex-shrink-0 text-gray-500"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                  />
-                </svg>
-
-                <span class="text-sm font-medium text-gray-900"> Settings </span>
-              </div>
-            </button>
-          </li>
-        </ul>
-      </header>
-      <main class="px-4 py-3">
+      <main class="spy-3">
         <For each={files} fallback={<div>Loading...</div>}>
           {(file) => (
             <>
@@ -120,6 +47,98 @@ export function Dashboard() {
           )}
         </For>
       </main>
-    </section>
+    </>
+  );
+}
+
+function FiletypeMenu() {
+  return (
+    <div class="my-4 grid grid-cols-2 grid-rows-2 gap-4">
+      <button class="flex items-center p-4 shadow-sm border rounded-md">
+        <div class="bg-indigo-100 p-2 rounded-full mr-2">
+          <HiSolidDocumentDuplicate color="#4f46e5" />
+        </div>
+        <div class="flex flex-col items-start">
+          <div class="text-slate-400 text-xs font-bold leading-none">890MB</div>
+          <div class="text-stone-900 text-sm font-bold leading-none">Documentos</div>
+        </div>
+      </button>
+      <button class="flex items-center p-4 shadow-sm border rounded-md">
+        <div class="bg-rose-100 p-2 rounded-full mr-2">
+          <BiRegularImages color="#be123c" />
+        </div>
+        <div class="flex flex-col items-start">
+          <div class="text-slate-400 text-xs font-bold leading-none">2.9GB</div>
+          <div class="text-stone-900 text-sm font-bold leading-none">Imagens</div>
+        </div>
+      </button>
+      <button class="flex items-center p-4 shadow-sm border rounded-md">
+        <div class="bg-orange-100 p-2 rounded-full mr-2">
+          <BiSolidVideos color="#c2410c" />
+        </div>
+        <div class="flex flex-col items-start">
+          <div class="text-slate-400 text-xs font-bold leading-none">1.3GB</div>
+          <div class="text-stone-900 text-sm font-bold leading-none">Vídeos</div>
+        </div>
+      </button>
+      <button class="flex items-center p-4 shadow-sm border rounded-md">
+        <div class="bg-slate-100 p-2 rounded-full mr-2">
+          <FaSolidChartPie color="#334155" />
+        </div>
+        <div class="flex flex-col items-start">
+          <div class="text-slate-400 text-xs font-bold leading-none">798MB</div>
+          <div class="text-stone-900 text-sm font-bold leading-none">Outros</div>
+        </div>
+      </button>
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <header class="pt-3">
+      <main class="flex items-center justify-between">
+        <div>
+          <span class="text-help-gray text-xs">Bom dia,</span>
+          <br />
+          <strong class="text-stone-900 text-lg">Dhaniel</strong>
+        </div>
+        <div>
+          <button type="button" class="border rounded-full p-2">
+            <HiOutlineSearch size={20} />
+          </button>
+          <button type="button" class="border rounded-full p-2 ml-2">
+            <HiOutlineBell size={20} />
+          </button>
+        </div>
+      </main>
+
+      <div class="bg-slate-200 flex items-center justify-center mt-4 w-full h-14 p-[6px] rounded-full">
+        <button
+          type="button"
+          class="w-full h-full rounded-full text-sm shadow-sm"
+          classList={{
+            'bg-white': true,
+            'font-bold': true,
+            'shadow-sm': true,
+            'text-stone-400': false,
+          }}
+        >
+          Meus Arquivos
+        </button>
+        <button
+          type="button"
+          class="w-full h-full rounded-full text-sm"
+          classList={{
+            'bg-white': false,
+            'font-bold': false,
+            'shadow-sm': false,
+            'text-stone-400': true,
+          }}
+        >
+          Compartilhados
+        </button>
+      </div>
+    </header>
   );
 }
